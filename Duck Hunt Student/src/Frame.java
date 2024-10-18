@@ -169,6 +169,26 @@ d.setXY(400, 1000); // off screen at bottom at first
 ground.setScale(1, 0.85);
 
 
+if (happyCandy.getY() > 800 || happyCandy.getY() < 0) {
+happyCandy.setVy((int)(Math.random()*(10-1)+1));
+happyCandy.setVy(happyCandy.getVx() * -1);
+// happyCandy.setX(200);
+// happyCandy.setY(150);
+
+} if (happyCandy.getY() > 700 && gasp.getY() >700) {
+gasp.setXY(400, 1000);
+happyCandy.setXY(400, 1000);
+}
+
+if(d.getY() < 450) {
+	
+//	int randomVx = (int)(Math.random()*(10-1)+1);
+//	int randomVy = (int)(Math.random()*(10-1)+1);
+	gasp1= false;
+	d.setVy(5);
+	happyCandy.setXY(0,0);
+}
+
 }
 
 
@@ -296,20 +316,20 @@ happyCandy.setXY(400, 1000);
 
 if(d.getY() < 450) {
 	
-	int randomVx = (int)(Math.random()*(10-1)+1);
-	int randomVy = (int)(Math.random()*(10-1)+1);
+//	int randomVx = (int)(Math.random()*(10-1)+1);
+//	int randomVy = (int)(Math.random()*(10-1)+1);
 	gasp1= false;
 	d.setVy(5);
 	happyCandy.setXY(0,0);
 
-	happyCandy.setVx(randomVx);
-	happyCandy.setVy(randomVy);
-	if(happyCandy.getX() <0 || happyCandy.getX() > getWidth()-happyCandy.getWidth()) {
-		happyCandy.setVx(-(happyCandy.getVx()));
-	}
-	if(happyCandy.getY() <0 || happyCandy.getY() >getHeight() - happyCandy.getHeight()) {
-		happyCandy.setVy(-(happyCandy.getVy()));
-}
+//	happyCandy.setVx(randomVx);
+//	happyCandy.setVy(randomVy);
+//	if(happyCandy.getX() <0 || happyCandy.getX() > getWidth()-happyCandy.getWidth()) {
+//		happyCandy.setVx(-(happyCandy.getVx()));
+//	}
+//	if(happyCandy.getY() <0 || happyCandy.getY() >getHeight() - happyCandy.getHeight()) {
+//		happyCandy.setVy(-(happyCandy.getVy()));
+//}
 
 
 
@@ -370,7 +390,7 @@ f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 f.setVisible(true);
 
 }
-
+ 
 
 //maake timer visible to  other methods
 Timer t = new Timer(16, this);
@@ -381,7 +401,7 @@ Timer t = new Timer(16, this);
 public void mouseClicked(MouseEvent mouse) {
 // TODO Auto-generated method stub
 
-Rectangle rMouse = new Rectangle(mouse.getX(), mouse.getY(), 100, 100); // guess and check size for now
+Rectangle rMouse = new Rectangle(mouse.getX(), mouse.getY(), 250, 250); // guess and check size for now
 
 // perform a rectangle collision with the mouse and object
 
@@ -392,9 +412,10 @@ Rectangle rMain = new Rectangle(happyCandy.getX(), happyCandy.getY(), happyCandy
 happyCandy.getHeight());
 
 // check if theyre colliding
-if (rMouse.intersects(rMain)) {// do the 2 rect intersects
+if (rMouse.intersects(rMain)) {// do the 2 rect intersects 
 
 gasp1 = true;
+StdAudio.playInBackground("soundEffect/ding.wav");
 
 happyCandy.setVx(1);
 happyCandy.setVy(10);
@@ -412,7 +433,7 @@ gasp1 = false;
 
 }
 
-
+ 
 d.setX(happyCandy.getX());
 d.setY(1000);
 // d.setY(500); // in case the dog is way in the abyss we must bring it back
